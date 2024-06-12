@@ -5,10 +5,9 @@ const Product = require('../models/Product');
 // Get all products
 router.post('/saveProduct', async (req, res) => {
   try {
-    // console.log('Get params : ', req.body.name)
-    console.log('Get params : ', req.query.name)
-    const name = req.query.name
-    const price = req.query.price
+    // console.log('Get body params : ', req.body.name)
+    const name = req.body.name
+    const price = req.body.price
     const params = {
       name: name,
       price: price
