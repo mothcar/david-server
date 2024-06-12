@@ -2,10 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser')
 require('./db');
+const productController = require('./controllers/productController');
 
 const app = express();
-
-const productController = require('./controllers/productController');
 
 app.use(cors());
 app.use(bodyParser.json());	//요청 본문을 json 형태로 파싱
