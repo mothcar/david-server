@@ -9,6 +9,10 @@ const app = express();
 //   cert: fs.readFileSync('/etc/letsencrypt/live/coupon-egg.netlify.app//fullchain.pem'),
 //   key: fs.readFileSync('/etc/letsencrypt/live/coupon-egg.netlify.app//privkey.pem')
 // };
+const options = {
+  key: fs.readFileSync("./config/cert.key"),
+  cert: fs.readFileSync("./config/cert.crt"),
+};
 
 require('./db');
 const productController = require('./controllers/productController');
@@ -27,7 +31,10 @@ app.use('/api', couponController);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server is listening on port ${PORT}`);
+// });
 // https.createServer(options, app).listen(443);
+https.createServer(options, app).listen(3000, () => {
+  console.log(`HTTPS server started on port 3000`);
+});
