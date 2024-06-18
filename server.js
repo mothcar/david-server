@@ -31,10 +31,11 @@ app.use('/api', couponController);
 
 const PORT = process.env.PORT || 3000;
 
-// app.listen(PORT, () => {
-//   console.log(`Server is listening on port ${PORT}`);
-// });
-// https.createServer(options, app).listen(443);
-https.createServer(options, app).listen(3000, () => {
-  console.log(`HTTPS server started on port 3000`);
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
 });
+
+// // https.createServer(options, app).listen(443);
+// https.createServer(options, app).listen(3000, () => {
+//   console.log(`HTTPS server started on port 3000`);
+// });
