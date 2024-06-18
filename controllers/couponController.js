@@ -31,7 +31,7 @@ const upload = multer({
   storage: imgconfig,
   limits:{fileSize:'1000000'},
   fileFilter:(req, file, callback)=>{
-      const fileType = /jpeg|jpg|png|gif/
+      const fileType = /jpeg|jpg|png|gif|webp/
       const mimeType = fileType.test(file.mimetype)
       const extname = fileType.test(path.extname(file.originalname))
       if(mimeType && extname){
