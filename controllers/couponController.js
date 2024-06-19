@@ -88,8 +88,7 @@ router.post('/saveCoupon', upload, async (req, res) => {
 
 router.get('/coupons', async (req, res) => {
   try {
-    // console.log('Get coupon.....')
-    const coupons = await Coupon.find().sort({$natural:1})
+    const coupons = await Coupon.find().sort({$natural:-1})
     res.json({item: coupons});
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
