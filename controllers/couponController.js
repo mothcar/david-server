@@ -41,19 +41,11 @@ const upload = multer({
   }
 }).single('file')
 
-// Get all Coupon
-router.post('/saveCoupon', upload, async (req, res) => {
+// Cloudinary Save Coupon 
+router.post('/saveCoupon', async (req, res) => {
   try {
     console.log('req.body : ', req.body)
-    const url = req.protocol + '://'+ req.get("host")+"/"+req.file.path;
-    console.log('Image Url : ', url )
-    // uploadMiddleWare(req, res, (err) => {
-    //   console.log("Middle : ", req.file)
-    //   if (err) {
-    //     res.sendStatus(500);
-    //   }
-    //   res.send(req.file);
-    // });
+    
 
     /* get from user
     user_image
@@ -73,7 +65,7 @@ router.post('/saveCoupon', upload, async (req, res) => {
       shop_name: "게게명",
       shop_location:{},
       title: req.body.title,
-      coupon_image: url,
+      coupon_image: req.body.url,
       content: "",
       price: 500
     }
@@ -85,6 +77,52 @@ router.post('/saveCoupon', upload, async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+
+// Save Coupon with multer
+// router.post('/saveCoupon', upload, async (req, res) => {
+//   try {
+//     console.log('req.body : ', req.body)
+//     const url = req.protocol + '://'+ req.get("host")+"/"+req.file.path;
+//     console.log('Image Url : ', url )
+//     // uploadMiddleWare(req, res, (err) => {
+//     //   console.log("Middle : ", req.file)
+//     //   if (err) {
+//     //     res.sendStatus(500);
+//     //   }
+//     //   res.send(req.file);
+//     // });
+
+//     /* get from user
+//     user_image
+//     user_name
+
+//     shop_id
+//     coupon_image
+//     */ 
+   
+//     const params = {
+//       type: req.body.type,  // GIVE, TAKE
+//       user_id: req.body.userId,  
+//       user_name: "테스트",
+//       address_depth1: "서울",
+//       address_depth2: "동작구",
+//       address_depth3: "신대방동",
+//       shop_name: "게게명",
+//       shop_location:{},
+//       title: req.body.title,
+//       coupon_image: url,
+//       content: "",
+//       price: 500
+//     }
+
+//     const coupon = await Coupon.create(params);
+//     if(coupon) return res.json({item: coupon});
+    
+//   } catch (error) {
+//     res.status(500).json({ error: 'Internal server error' });
+//   }
+// });
 
 router.get('/coupons', async (req, res) => {
   try {
