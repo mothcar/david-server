@@ -2,6 +2,17 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
 
+// Test api
+router.get('/test', async (req, res) => {
+  try {
+    // console.log('Get body params : ', req.body.name)
+    const product = {item : "Server Connection is Good!!"}
+    res.json(product);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // Get all products
 router.post('/saveProduct', async (req, res) => {
   try {
